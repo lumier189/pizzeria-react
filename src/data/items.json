@@ -1,0 +1,184 @@
+[
+    {
+        "id": 1,
+        "name": "garlic",
+        "is_active": 1,
+        "createdAt": "2022-08-11T12:47:37.000Z",
+        "updatedAt": "2022-08-11T12:47:37.000Z",
+        "menu_sizes": [
+            {
+                "menu_id": 1,
+                "size_id": 3,
+                "price": 30,
+                "createdAt": "2022-08-16T01:35:42.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            },
+            {
+                "menu_id": 1,
+                "size_id": 2,
+                "price": 20,
+                "createdAt": "2022-08-16T01:35:12.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            },
+            {
+                "menu_id": 1,
+                "size_id": 1,
+                "price": 10,
+                "createdAt": "2022-08-16T01:35:22.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "aliche",
+        "is_active": 1,
+        "createdAt": "2022-08-11T12:43:37.000Z",
+        "updatedAt": "2022-08-11T12:47:37.000Z",
+        "menu_sizes": [
+            {
+                "menu_id": 2,
+                "size_id": 3,
+                "price": 30,
+                "createdAt": "2022-08-16T01:35:02.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            },
+            {
+                "menu_id": 2,
+                "size_id": 2,
+                "price": 20,
+                "createdAt": "2022-08-16T01:45:42.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            },
+            {
+                "menu_id": 2,
+                "size_id": 1,
+                "price": 10,
+                "createdAt": "2022-08-16T01:35:42.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "mozzarella",
+        "is_active": 1,
+        "createdAt": "2022-08-11T12:19:37.000Z",
+        "updatedAt": "2022-08-11T12:47:37.000Z",
+        "menu_sizes": [
+            {
+                "menu_id": 3,
+                "size_id": 3,
+                "price": 30,
+                "createdAt": "2022-08-16T01:36:42.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            },
+            {
+                "menu_id": 3,
+                "size_id": 2,
+                "price": 20,
+                "createdAt": "2022-08-16T01:39:42.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            },
+            {
+                "menu_id": 3,
+                "size_id": 1,
+                "price": 10,
+                "createdAt": "2022-08-16T01:35:42.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "marguerita",
+        "is_active": 1,
+        "createdAt": "2022-08-11T12:46:37.000Z",
+        "updatedAt": "2022-08-11T12:47:37.000Z",
+        "menu_sizes": [
+            {
+                "menu_id": 4,
+                "size_id": 3,
+                "price": 30,
+                "createdAt": "2022-08-16T01:35:42.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            },
+            {
+                "menu_id": 4,
+                "size_id": 2,
+                "price": 20,
+                "createdAt": "2022-08-16T01:35:42.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            },
+            {
+                "menu_id": 4,
+                "size_id": 1,
+                "price": 10,
+                "createdAt": "2022-08-16T01:35:42.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "dark chocolate",
+        "is_active": 1,
+        "createdAt": "2022-08-11T12:47:31.000Z",
+        "updatedAt": "2022-08-11T12:47:37.000Z",
+        "menu_sizes": [
+            {
+                "menu_id": 5,
+                "size_id": 2,
+                "price": 20,
+                "createdAt": "2022-08-16T01:35:42.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            },
+            {
+                "menu_id": 5,
+                "size_id": 1,
+                "price": 10,
+                "createdAt": "2022-08-16T01:35:42.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "white chocolate",
+        "is_active": 1,
+        "createdAt": "2022-08-11T12:17:37.000Z",
+        "updatedAt": "2022-08-11T12:47:37.000Z",
+        "menu_sizes": [
+            {
+                "menu_id": 6,
+                "size_id": 2,
+                "price": 20,
+                "createdAt": "2022-08-16T01:35:42.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            },
+            {
+                "menu_id": 6,
+                "size_id": 1,
+                "price": 10,
+                "createdAt": "2022-08-16T01:35:42.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "banana",
+        "is_active": 1,
+        "createdAt": "2022-08-11T12:57:37.000Z",
+        "updatedAt": "2022-08-11T12:47:37.000Z",
+        "menu_sizes": [
+            {
+                "menu_id": 7,
+                "size_id": 1,
+                "price": 10,
+                "createdAt": "2022-08-16T01:35:42.000Z",
+                "updatedAt": "2022-08-16T01:35:42.000Z"
+            }
+        ]
+    }
+]

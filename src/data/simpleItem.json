@@ -1,0 +1,21 @@
+[
+    {
+        "id":1,
+        "name":"pizza tomate",
+        "size": "medium",
+        "preco": 200
+    },
+    {   
+        "id":2,
+        "name":"pizza terra",
+        "preco": 2500
+        
+    },
+    {
+        "id":3,
+        "name":"pizza queijo",
+        "preco": 2000
+        
+    }
+
+]
