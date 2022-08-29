@@ -1,9 +1,9 @@
 import React from "react";
 
 
-export default function Items({aumentarQuantidade,diminuirQuantidade,calcularPreco,supostoItem,sizeId,quantidade,id}) {
+export default function Items({removerItem, aumentarQuantidade, diminuirQuantidade, sizeId, quantidade, id, preco }) {
 
-// console.log(sizeId,id)
+  // console.log(sizeId,id)
 
   return (
     <div className="table-responsive">
@@ -33,35 +33,65 @@ export default function Items({aumentarQuantidade,diminuirQuantidade,calcularPre
               <p className="mb-0" style={{
                 fontWeight: "500"
               }}
-              >{id}</p>
+
+
+              >{id}
+
+
+              </p>
             </td>
             <td className="align-middle">
-              
-              <p className="mb-0" style={{ fontWeight: "500" }}>{sizeId}</p>
+
+              <p className="mb-0" style={{ fontWeight: "500" }}>
+
+
+                {sizeId}
+
+
+              </p>
 
             </td>
             <td className="align-middle">
               <div className="d-flex flex-row">
-                <button onClick={diminuirQuantidade}>-</button>
+                <button value={id} onClick={(e) => diminuirQuantidade( e.target.value)}>-</button>
 
-                <input type="number" value={quantidade}/>
-                
-                <button onClick={aumentarQuantidade}>+</button>
+
+
+                <input type="number" value={quantidade} />
+
+
+
+                <button value={id} onClick={(e) => aumentarQuantidade( e.target.value)}> +</button>
               </div>
+
+
+              <div>
+
+              </div>
+
+
+
             </td>
             <td className="align-middle">
               <p className="mb-0" style={{ fontWeight: "500" }}>
 
-               
+
+                {preco}
+                
+
               </p>
             </td>
             <td className="align-middle">
-              <a href="/delete"><i className="bi-trash"></i></a>
+
+
+              <button className="btn btn-danger" value={id} onClick={(e)=> removerItem( e.target.value)}>Remover</button>
+
+
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    
+
   )
 }

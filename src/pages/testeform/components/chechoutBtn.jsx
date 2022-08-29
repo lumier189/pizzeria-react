@@ -1,8 +1,15 @@
-import React from "react";
+import React,{useState} from "react";
+import Carrinho from "../../../model/carrinhoModel"
 
 
 
 export default function checkoutBtn() {
+   
+   
+
+
+
+
     return (
         <div>
             <hr className="my-4" />

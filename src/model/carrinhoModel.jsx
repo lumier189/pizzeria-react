@@ -1,22 +1,26 @@
-export default function getCarrinho() {
+export default {
+    getCarrinho() {
+        return JSON.parse(sessionStorage.getItem('carrinho')) ?? {
+            
+                metodoPagamento: "deu boa",
+                id: 1,
+                name:"teste",                
+                pizza: [{
+                    nome: 'Calabresa',
+                    preco: 15.50,
+                    quantidade: 2,
+                    tamanhoId: 1
+             
+                }],
+            
+        }
+    },
 
-    return JSON.parse(sessionStorage.getItem('carrinho')) ?? {
-        metodo_pagamento: null,
-        pedidos: [{
-            id: 1,
-            quantidade: 1,
-            pizza: {
-                nome: 'Calabresas',
-                tamanho: {
-                    tamanho_id: 1,
-                    preco: 15.50
-                },
-            },
-        }],
-        total: 0
+
+
+    
+
+    setCarrinho(carrinho) {
+        return sessionStorage.setItem('carrinho', JSON.stringify(carrinho))
     }
-}
-
-setCarrinho(carrinho) {
-    return sessionStorage.setItem('carrinho', JSON.stringify(carrinho))
 }

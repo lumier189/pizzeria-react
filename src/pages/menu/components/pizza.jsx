@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 export default function Pizza({ name, prices, id, isRadioChecked, handleChange, aumentarQuantidade,diminuirQuantidade,quantidade,adicionarCarrinho}) {
 
-    const url = "menu/"+id
+    const url = id
 
 
     return (
@@ -35,8 +35,12 @@ export default function Pizza({ name, prices, id, isRadioChecked, handleChange, 
                      <><dt>
                         <div>                            
                             <span>
-                            <input name="formaPagamento" type="radio" checked={isRadioChecked("debit")} onChange={handleChange}  value={size}   /> {size}<br/>
-                            </span>
+                            
+                            
+
+                            <input name="formaPagamento" type="radio" checked={isRadioChecked()} onChange={handleChange}  value={size}   /> {size}<br/>
+                         
+                        </span>
                         </div>   
                         </dt>
                         <dd>{price}</dd></>)}           

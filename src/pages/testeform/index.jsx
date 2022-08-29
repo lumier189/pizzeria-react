@@ -1,33 +1,21 @@
-import React,{ useState } from "react";
+import React,{ useState,useEffect} from "react";
 import Items from "./components/items"
 import MetodoP from "./components/metodoP"
 import CheackoutBtn from "./components/chechoutBtn"
 import simpleItems from "../../data/simpleItem.json"
+import Carrinho from "../../model/carrinhoModel"
 
 
 
-export function Testeform(){
+export function Testeform(){ 
+    const [carrinho, setCarrinho] = useState(Carrinho.getCarrinho())
 
-   
-        const stored = sessionStorage.getItem("carrinho");
-    // console.log(JSON.parse(stored));
+    console.log(carrinho)
 
-    function getSessionStorageOrDefault(key, defaultValue) {
-        const stored = sessionStorage.getItem(key);
-        if (!stored) {
-          return defaultValue;
-        }
-        return JSON.parse(stored);
-      }
-    const carrinho = getSessionStorageOrDefault("carrinho") 
-    // console.log(carrinho)
+    useEffect(() => {
+        Carrinho.setCarrinho(carrinho);
+    }, [carrinho]);
 
-   
-
-    const [formaPagamento, setFormaPagamento] = useState(() => {
-        return
-    })
-    // console.log(formaPagamento)
 
     function isRadioChecked(value) {
         if (isRadioChecked === value)
@@ -35,51 +23,83 @@ export function Testeform(){
     }
 
     function handleChange(e) {
-        return setFormaPagamento(e.currentTarget.value)
+        return setCarrinho({...carrinho, metodoPagamento:e.currentTarget.value})
     }
 
 
-    const [quantidade,setQuantidade] = useState(()=>{
-        return 1
-    })
-    // console.log(quantidade)
-    // function aumentarQuantidade(){
-    //     setQuantidade(prevQuantidade => prevQuantidade +1)
-    // }
+    function aumentarQuantidade(id){
+        const infos = carrinho.pizza.find(pizza => pizza.nome === id);
+       
+        const index = carrinho.pizza.findIndex(pizza => pizza.nome === id);
 
-    // function diminuirQuantidade(){
-    //     setQuantidade(prevQuantidade => prevQuantidade -1)
-    // }
+        const infoCarrinho = carrinho.pizza
+        const newPizza = infoCarrinho[index] = {
+            nome: infos.nome,
+            preco: infos.preco,
+            tamanhoId: infos.tamanhoId,
+            quantidade: infos.quantidade + 1
+        }
+     
+        return setCarrinho({...carrinho, pizza: infoCarrinho})
+     
+    }    
+    
+    
+    function diminuirQuantidade(id){
+        const infos = carrinho.pizza.find(pizza => pizza.nome === id);
+       
+        const index = carrinho.pizza.findIndex(pizza => pizza.nome === id);
+
+        const infoCarrinho = carrinho.pizza
+        const newPizza = infoCarrinho[index] = {
+            nome: infos.nome,
+            preco: infos.preco,
+            tamanhoId: infos.tamanhoId,
+            quantidade: infos.quantidade - 1
+        }
+     
+        return setCarrinho({...carrinho, pizza: infoCarrinho})
+     
+    }    
+
+
+
+        function removerItem(id){ 
+            const infoCarrinho = carrinho.pizza
+            const index = carrinho.pizza.findIndex(pizza => pizza.nome === id)
+            infoCarrinho.splice(index, 1)
+                        
+            // console.log(infoCarrinho)
+            return setCarrinho({...carrinho, pizza:infoCarrinho})
+        }
+    // console.log(carrinho.pizza.findIndex(pizza => pizza.nome === "Calabresa"))
 
     // const calcularPreco = (id,quantidade) =>  id * quantidade 
     
     //console.log(calcularPreco(simpleItems[0].preco,quantidade))
 
-    const supostoItem = simpleItems[0]
-
-    console.log(carrinho[0].quantidade)
+    // console.log(carrinho[0].quantidade)
 
 
     return(
 
 
         <div>
-            {carrinho.map((item) => <Items
-            id={item.id}
-            quantidade={item.quatidade}
-            sizeId={item.sizeId}
-           
-            // diminuirQuantidade={diminuirQuantidade}
-            // aumentarQuantidade={aumentarQuantidade}
-            // calcularPreco={calcularPreco}
-            />)}
-            
-            {/* <Items diminuirQuantidade={diminuirQuantidade}
+       
+
+           {carrinho.pizza.map((item) =><Items
+            removerItem={removerItem}
+            diminuirQuantidade={diminuirQuantidade}
             aumentarQuantidade={aumentarQuantidade}
-            calcularPreco={calcularPreco}
-            supostoItem={supostoItem}
-            quantidade={quantidade}
-            ></Items> */}
+            id={item.nome}
+            quantidade={item.quantidade}    
+            sizeId={item.tamanhoId}
+            preco={item.preco * item.quantidade} /> )}
+
+            
+        
+            
+        
             <MetodoP isRadioChecked={isRadioChecked} handleChange={handleChange}></MetodoP>
             <CheackoutBtn></CheackoutBtn>
         </div>
