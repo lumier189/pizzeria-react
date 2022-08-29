@@ -5,6 +5,7 @@
         "is_active": 1,
         "createdAt": "2022-08-11T12:47:37.000Z",
         "updatedAt": "2022-08-11T12:47:37.000Z",
+        "img":"../img/garlic.jpg",        
         "menu_sizes": [
             {
                 "menu_id": 1,
@@ -35,6 +36,7 @@
         "is_active": 1,
         "createdAt": "2022-08-11T12:43:37.000Z",
         "updatedAt": "2022-08-11T12:47:37.000Z",
+        "img":"../img/aliche.jpg",
         "menu_sizes": [
             {
                 "menu_id": 2,
@@ -65,6 +67,7 @@
         "is_active": 1,
         "createdAt": "2022-08-11T12:19:37.000Z",
         "updatedAt": "2022-08-11T12:47:37.000Z",
+        "img":"../img/mozzarela.jpg",
         "menu_sizes": [
             {
                 "menu_id": 3,
@@ -95,6 +98,7 @@
         "is_active": 1,
         "createdAt": "2022-08-11T12:46:37.000Z",
         "updatedAt": "2022-08-11T12:47:37.000Z",
+        "img":"../img/marguerita.jpg",
         "menu_sizes": [
             {
                 "menu_id": 4,
@@ -125,6 +129,7 @@
         "is_active": 1,
         "createdAt": "2022-08-11T12:47:31.000Z",
         "updatedAt": "2022-08-11T12:47:37.000Z",
+        "img":"../img/darkchoco.jpg",
         "menu_sizes": [
             {
                 "menu_id": 5,
@@ -148,6 +153,7 @@
         "is_active": 1,
         "createdAt": "2022-08-11T12:17:37.000Z",
         "updatedAt": "2022-08-11T12:47:37.000Z",
+        "img":"../img/whitechoco.jpg",
         "menu_sizes": [
             {
                 "menu_id": 6,
@@ -171,6 +177,7 @@
         "is_active": 1,
         "createdAt": "2022-08-11T12:57:37.000Z",
         "updatedAt": "2022-08-11T12:47:37.000Z",
+        "img":"../img/banana.jpg",
         "menu_sizes": [
             {
                 "menu_id": 7,

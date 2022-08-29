@@ -17,13 +17,19 @@ export function PizzaId() {
   }, [carrinho]);
 
   function addToCart(e) {
-    const newPedidos = [...carrinho.pizza, {
 
+    if(carrinho.pizza.find( pizza => pizza.id === id && pizza.tamanhoId === tamanho ))
+    return alert("o item já esta no carrinho")
+
+    const newPedidos = [...carrinho.pizza, {
+      name: pizza.name,
       id: id,
       preco: preco,
+      img: pizza.img,
       tamanhoId: tamanho,
       quantidade: quantidade
     }]
+    console.log("item adicionado")
     return setCarrinho({ ...carrinho, pizza: newPedidos })
   }
 
@@ -42,12 +48,18 @@ export function PizzaId() {
   const [quantidade, setQuantidade] = useState(() => {
     return 1
   })
-  console.log(quantidade)
+  // console.log(quantidade)
+
   function aumentarQuantidade() {
+    
     setQuantidade(prevQuantidade => prevQuantidade + 1)
   }
 
   function diminuirQuantidade() {
+    if(quantidade<2){
+      return alert("quantidade minima 1")
+    }
+   
     setQuantidade(prevQuantidade => prevQuantidade - 1)
   }
 
@@ -88,6 +100,7 @@ export function PizzaId() {
   return (
     <div className="row w-100">
       <Pizza
+        img={pizza.img}
         adicionarCarrinho={addToCart}
         quantidade={quantidade}
         diminuirQuantidade={diminuirQuantidade}

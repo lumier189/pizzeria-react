@@ -1,14 +1,16 @@
 import React from "react";
 import MenuPizza from "./components/menuPizza";
-
 import arrayPizzas from "../../data/items.json"
+
+
 export function Menu() {
     const sizeName = [null, "small", "medium", "large"]
     return (
         <div className="album py-5 bg-light" style={{ border: "0" }}>
             <div className="container" style={{ display: "flex" }}>
                 <div className="row d-flex" >
-                    {arrayPizzas.map((pizza) => <MenuPizza 
+                    {arrayPizzas.map((pizza) => <MenuPizza
+                    img={pizza.img} 
                     id={pizza.id}
                     name={pizza.name} 
                     prices={pizza.menu_sizes.map((menu_size) => ({

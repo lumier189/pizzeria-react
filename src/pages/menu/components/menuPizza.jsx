@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function PizzaMenu({ name, prices, id }) {
+export default function PizzaMenu({ name, prices, id, img}) {
 
     const url = "menu/" + id
 
@@ -25,7 +25,7 @@ export default function PizzaMenu({ name, prices, id }) {
                             maxWidth: "348px",
                             display: "block"
                         }}
-                        src="https://lolitajoias.com.br/wp-content/uploads/2020/09/no-image.jpg"
+                        src={img}
                         data-holder-rendered="true" />
 
                 </a>

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-export default function Pizza({ name, prices, id, isRadioChecked, handleChange, aumentarQuantidade,diminuirQuantidade,quantidade,adicionarCarrinho}) {
+export default function Pizza({ name, prices, id, isRadioChecked, handleChange, aumentarQuantidade,diminuirQuantidade,quantidade,adicionarCarrinho,img}) {
 
     const url = id
 
@@ -25,7 +25,7 @@ export default function Pizza({ name, prices, id, isRadioChecked, handleChange, 
                             maxWidth: "348px",
                             display: "block"
                         }}
-                        src="https://lolitajoias.com.br/wp-content/uploads/2020/09/no-image.jpg"
+                        src={img}
                         data-holder-rendered="true" />
 
                 </a>
@@ -47,7 +47,7 @@ export default function Pizza({ name, prices, id, isRadioChecked, handleChange, 
                     </dl>
                     <div className="d-flex flex-row">
                         <button onClick={diminuirQuantidade}>-</button>
-                        <input type="number" value={quantidade} />
+                        <input type="number" min="1" value={quantidade} />
                         <button onClick={aumentarQuantidade}>+</button>
                     </div>
 

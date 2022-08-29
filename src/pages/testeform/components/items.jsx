@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export default function Items({removerItem, aumentarQuantidade, diminuirQuantidade, sizeId, quantidade, id, preco }) {
+export default function Items({removerItem, aumentarQuantidade, diminuirQuantidade, sizeId, quantidade, id, preco,name,img}) {
 
   // console.log(sizeId,id)
 
@@ -22,7 +22,7 @@ export default function Items({removerItem, aumentarQuantidade, diminuirQuantida
           <tr>
             <td>
               <div className="d-flex align-items-center">
-                <img src="https://s.calendarr.com/upload/datas/pi/zz/pizza_c.jpg?auto_optimize=low&width=640"
+                <img src={img}
                   className="img-fluid rounded-3" style={{
                     width: "120px"
                   }}
@@ -35,7 +35,7 @@ export default function Items({removerItem, aumentarQuantidade, diminuirQuantida
               }}
 
 
-              >{id}
+              >{name}
 
 
               </p>
@@ -53,15 +53,16 @@ export default function Items({removerItem, aumentarQuantidade, diminuirQuantida
             </td>
             <td className="align-middle">
               <div className="d-flex flex-row">
-                <button value={id} onClick={(e) => diminuirQuantidade( e.target.value)}>-</button>
+
+                <button  onClick={(e) => diminuirQuantidade(id,sizeId)}>-</button>
 
 
 
-                <input type="number" value={quantidade} />
+                <input type="number" onkeypress="return event.charCode >= 48" min="1"  value={quantidade} />
 
 
 
-                <button value={id} onClick={(e) => aumentarQuantidade( e.target.value)}> +</button>
+                <button value={[id,sizeId]} onClick={(e) => aumentarQuantidade( e.target.value)}> +</button>
               </div>
 
 
