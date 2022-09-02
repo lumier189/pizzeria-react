@@ -1,18 +1,13 @@
 import Routes from "./routes";
-import { BrowserRouter } from "react-router-dom"
-import Template from "./components/template";
+import { BrowserRouter } from "react-router-dom";
 
 
-function App() {
-  
+function App() {  
   return (
-    <BrowserRouter>    
-    <Template>
+    <BrowserRouter>      
      <Routes/>
-    </Template>
     </BrowserRouter>    
   )
 }
 
-
-export default App
+export default App;

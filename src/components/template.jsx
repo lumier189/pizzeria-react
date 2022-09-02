@@ -1,46 +1,105 @@
-import React from "react";
+import React, { useState } from "react";
+import Carrinho from "../model/carrinhoModel"
+import userModel from "../model/userModel";
+import User from "../model/userModel"
 
-export default function Template({ children }) {
-    return (
-        <div>
-            <header>
-                <div className="collapse" id="navbarToggleExternalContent">
-                    <div className="bg-dark p-4">
-                        <form className="form-signin d-flex justify-content-end">
-                            <input type="email" id="inputEmail" className="form-control-sm" placeholder="Email address" required  />
-                            <input type="password" id="inputPassword" className="form-control-sm" placeholder="Password" required />
-                            <button className="btn btn-secondary btn-block" type="submit">Sign in</button>
-                            <a href="/register" className="btn btn-secondary">Register</a>
-                        </form>
-                     </div>
-                </div>                
-                <div className="navbar navbar-dark bg-dark box-shadow">
-                    <div className="container justify-content-between">
-                        <a href="/teste" className="navbar-brand d-flex align-items-center">
-                        <img
-                        src="https://cdn.discordapp.com/attachments/727458678638379082/1010244518253182986/userlmn_575787676f42bb785cb9d7699f442f64.png"
-                        width="20" height="20" alt="imagem"/>
-                        <strong>VitorPizzas</strong>
-                        </a>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                        </button>
+export default function Template({ children, hasBanner }) {
+  const [carrinho, setCarrinho] = useState(Carrinho.getCarrinho())
+  const user = User.getUser()
+
+  function isAuth() {
+    if (user === null)
+      return false
+    return true
+  }
+
+
+  function quantidadeTotalDeItems() {
+    const items = carrinho.pizza.length
+    if (items > 0) {
+      return items
+    }
+  }
+
+  return (
+    <div>
+      <header>
+        <div className="navbar navbar-dark bg-dark box-shadow">
+          <div className="container justify-content-between">
+            <a href="/" className="navbar-brand align-items-center">
+              <img
+                style={{ marginTop: -3 }}
+                src="../img/logowhite.png"
+                width="20" height="20" alt="imagem" />
+              <strong>&nbsp;VitorPizzas</strong>
+            </a>
+            {isAuth() ? (
+              <div className="d-flex">
+                <div className="col-auto ">
+                  <span className="btn btn-dark btn-sm" type="submit">sing out</span>
+                </div>
+                <div className="col-auto mx-3">
+                  <span className="btn btn-dark btn-sm">{user.name}</span>
+                </div>
+                <a className="rounded-circle" href="/cart" style={{ position: "relative" }}>
+                  <img className="" src="../img/cart.png" width="25" alt="cart" style={{ filter: "invert(100)", position: "relative" }} />
+
+                  {quantidadeTotalDeItems() > 0 && (
+                    <div className="rounded-circle bg-danger d-flex justify-content-center align-items-center" style={{ color: "white", width: "20px", height: "1.3rem", position: "absolute", bottom: "10px", right: "0", transform: "translate(40%,63%)" }}>
+                      {quantidadeTotalDeItems()}
                     </div>
+                  )}
+                </a>
+              </div>
+            ) :
+              <div className="d-flex">
+                <div className="col-auto ">
+                  <a href="/login2" className="btn btn-dark btn-sm" type="submit">Sign in</a>
                 </div>
-             </header >
-        { children }
-            <footer className="text-muted" style={{
-                background:"#212529",
-                padding:"10px"
-                }}>
-                <div className="container">
-                <p className="float-right">
-                <a href="/teste">Back to top</a>
-                </p>                
+                <div className="col-auto mx-3">
+                  <a href="/cadastro" className="btn btn-dark btn-sm">Register</a>
                 </div>
-            </footer>
-        </div >
-    )
+                <a className="rounded-circle" href="/cart" style={{ position: "relative" }}>
+                  <img className="" src="../img/cart.png" width="25" alt="cart" style={{ filter: "invert(100)", position: "relative" }} />
+
+                  {quantidadeTotalDeItems() > 0 && (
+                    <div className="rounded-circle bg-danger d-flex justify-content-center align-items-center" style={{ color: "white", width: "20px", height: "1.3rem", position: "absolute", bottom: "10px", right: "0", transform: "translate(40%,63%)" }}>
+                      {quantidadeTotalDeItems()}
+                    </div>
+                  )}
+                </a>
+              </div>
+            }
+          </div>
+        </div>
+
+      </header >
+
+      {hasBanner && (
+        <div className="jumbotron jumbotron-fluid" id="jumbotron" style={{
+          display: "block", width: "100%",
+          height: 250,
+          backgroundImage: "url(../img/baner.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center center"
+        }}>
+        </div>
+      )}
+      <div>
+      </div>
+      <div className="container" style={{ minHeight: hasBanner ? "calc(100vh - 366px)" : "calc(100vh - 116px)" }}>
+        {children}
+      </div>
+      <footer className="text-muted" style={{
+        background: "#212529",
+        padding: "10px"
+      }}>
+        <div className="container">
+          <p className="float-right">
+            <a href="/teste">Back to top</a>
+          </p>
+        </div>
+      </footer>
+    </div >
+  )
 }

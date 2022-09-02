@@ -3,6 +3,7 @@ import Pizza from "./components/pizza"
 import arrayPizzas from "../../data/items.json"
 import { useParams } from "react-router-dom"
 import Carrinho from "../../model/carrinhoModel"
+import Template from "../../components/template"
 
 
 export function PizzaId() {
@@ -16,33 +17,40 @@ export function PizzaId() {
     Carrinho.setCarrinho(carrinho);
   }, [carrinho]);
 
-  function addToCart(e) {
 
-    if(carrinho.pizza.find( pizza => pizza.id === id && pizza.tamanhoId === tamanho ))
-    return alert("o item já esta no carrinho")
+  function addToCart(e) {
+    if (tamanho === null) {
+      return handleAlert()
+    }
+    if (carrinho.pizza.find(pizza => pizza.id === id && pizza.tamanhoId === tamanho)) {
+      return handleAlert()
+    }
 
     const newPedidos = [...carrinho.pizza, {
       name: pizza.name,
       id: id,
-      preco: preco,
+      preco: price,
       img: pizza.img,
       tamanhoId: tamanho,
       quantidade: quantidade
     }]
-    console.log("item adicionado")
+    handleAlert()
     return setCarrinho({ ...carrinho, pizza: newPedidos })
   }
 
-  const [tamanho, setTamanho] = useState("medium")
+  const [price, setPrice] = useState(null)
+  const [tamanho, setTamanho] = useState(null)
   // console.log(tamanho)
 
   function isRadioChecked(value) {
-    if (isRadioChecked === value)
-      return value
+    if (tamanho !== value)
+      return false
   }
 
-  function handleChange(e) {
-    return setTamanho(e.currentTarget.value)
+  function handleChange(size, price) {
+    setPrice(price)
+    console.log(price)
+    return setTamanho(size)
   }
 
   const [quantidade, setQuantidade] = useState(() => {
@@ -51,15 +59,14 @@ export function PizzaId() {
   // console.log(quantidade)
 
   function aumentarQuantidade() {
-    
     setQuantidade(prevQuantidade => prevQuantidade + 1)
   }
 
   function diminuirQuantidade() {
-    if(quantidade<2){
+    if (quantidade < 2) {
       return alert("quantidade minima 1")
     }
-   
+
     setQuantidade(prevQuantidade => prevQuantidade - 1)
   }
 
@@ -67,56 +74,91 @@ export function PizzaId() {
   const { id } = params
   // console.log(Number(id))
 
+  const [pizza, setPizza] = useState({
+    "id": 4,
+    "name": null,
+    "is_active": null,
+    "img": null,
+    "category": null,
+    "created_at": null,
+    "updated_at": null,
+    "ingredients": [],
+    "menu_sizes": []
+
+
+  });
+
+  useEffect(() => {
+    fetch("http://localhost:3001/pizzas/" + id)
+      .then((response) => response.json())
+      .then((data) => {
+        setPizza(data)
+      })
+  }, [])
   const idName = []
-  const sizeName = [null, "small", "medium", "large"]
-  const pizza = arrayPizzas.find(pizza => pizza.id === Number(id))
-  // console.log(pizza)
+  const sizeName = [null, "Small", "Medium", "Large"]
+  // const pizza = arrayPizzas.find(pizza => pizza.id === Number(id))
 
-  function calcularPreco() {
-    const nameToSiz = () => {
-      if (tamanho === "small") {
-        // console.log("PEQUENOOOOOOOOOOOOO!")
-        return 1
-      } if (tamanho === "medium") {
-        // console.log("MEDIOOOOOO")
-        return 2
-      } if (tamanho === "large") {
-        // console.log("GRANDÃO")
-        return 3
-      }
+
+  const [showAlert, setShowAlert] = useState({ sucess: false, error: false, pickSize: false });
+  // console.log(showAlert)
+
+  function handleAlert() {
+    if (carrinho.pizza.find(pizza => pizza.id === id && pizza.tamanhoId === tamanho)) {
+      setShowAlert(showAlert => { return { ...showAlert, error: true } })
+      return setTimeout(() => {
+        setShowAlert(showAlert => { return { ...showAlert, error: false } })
+      }, 4000);
     }
-    const taporra = nameToSiz()
-    // console.log(taporra)
-
-    const filtrado = pizza.menu_sizes.filter(function (obj) { return obj.size_id === taporra })
-
-    // console.log(filtrado)
-
-    return filtrado[0].price
+    if (tamanho === null) {
+      setShowAlert(showAlert => { return { ...showAlert, pickSize: true } })
+      return setTimeout(() => {
+        setShowAlert(showAlert => { return { ...showAlert, pickSize: false } })
+      }, 4000);
+    }
+    setShowAlert(showAlert => { return { ...showAlert, sucess: true } })
+    return setTimeout(() => {
+      setShowAlert(showAlert => { return { ...showAlert, sucess: false } })
+    }, 3000);
   }
-
-  const preco = calcularPreco()
-
   return (
-    <div className="row w-100">
-      <Pizza
-        img={pizza.img}
-        adicionarCarrinho={addToCart}
-        quantidade={quantidade}
-        diminuirQuantidade={diminuirQuantidade}
-        aumentarQuantidade={aumentarQuantidade}
-        handleChange={handleChange}
-        isRadioChecked={isRadioChecked}
-        key={pizza.id}
-        name={pizza.name}
-        prices={pizza.menu_sizes.map((menu_size) => ({
-          size: sizeName[menu_size.size_id],
-          price: menu_size.price
-        }))} />
-    </div>
+    <Template>
+      <div className="row w-100" >
+        <div style={{ position: "fixed", top: "0", left: "0", right: "0", margin: "auto", width: "100%", maxWidth: 600, zIndex: 999 }}>
+          {showAlert.sucess && (
+            <div className="alert alert-success text-center fade show" role="alert" >
+              Item added in your cart!
+            </div>
+          )}
+          {showAlert.error && (
+            <div className="alert alert-danger text-center fade show" role="alert">
+              Error, item already in your cart! Pick a diferent size or choose another pizza.
+            </div>
+          )}
+          {showAlert.pickSize && (
+            <div className="alert alert-danger text-center fade show" role="alert">
+              You must choose one size first.
+            </div>
 
-
-
-
+          )}
+        </div>
+        <Pizza
+          ingredients={pizza.ingredients}
+          img={pizza.img}
+          category={pizza.category}
+          adicionarCarrinho={addToCart}
+          quantidade={quantidade}
+          diminuirQuantidade={diminuirQuantidade}
+          aumentarQuantidade={aumentarQuantidade}
+          handleChange={handleChange}
+          isRadioChecked={isRadioChecked}
+          key={pizza.id}
+          name={pizza.name}
+          prices={pizza.menu_sizes.map((menu_size) => ({
+            size: sizeName[menu_size.size_id],
+            price: menu_size.price
+          }))} />
+      </div>
+    </Template>
   )
 }
