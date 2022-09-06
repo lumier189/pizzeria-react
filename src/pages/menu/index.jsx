@@ -19,7 +19,7 @@ export function Menu() {
   return (
     <Template hasBanner={true}>
       <div className="album py-5 bg-light" style={{ border: "0" }}>
-        <div className="row d-flex" >
+        <div className="row text-center" >
           {arrayPizzas.map((pizza) => <MenuPizza
             category={pizza.category}
             img={pizza.img}

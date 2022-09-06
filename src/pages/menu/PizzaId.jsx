@@ -115,7 +115,11 @@ export function PizzaId() {
   }
   return (
     <Template>
-      <div className="row w-100" >
+       <div className="album py-5 bg-light" style={{ border: "0" }}>
+      <div className="row d-flex"style={{
+        display: "flex",
+        justifyContent: "center"
+      }}>
         <div style={{ position: "fixed", top: "0", left: "0", right: "0", margin: "auto", width: "100%", maxWidth: 600, zIndex: 999 }}>
           {showAlert.sucess && (
             <div className="alert alert-success text-center fade show" role="alert" >
@@ -150,6 +154,7 @@ export function PizzaId() {
             size:menu_size.size_id,
             price: menu_size.price
           }))} />
+      </div>
       </div>
     </Template>
   )
