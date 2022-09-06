@@ -102,12 +102,13 @@ const handleAlert ={
       <div style={{ position: "fixed", top: "0", left: "0", right: "0", margin: "auto", width: "100%", maxWidth: 600, zIndex: 999 }}>
           {showAlert.payment && (
             <div className="alert alert-danger text-center fade show" role="alert" >
-              escolha um metodo de pagamento
+            Choose a payment method
             </div>
           )}
           {showAlert.login && (
             <div className="alert alert-danger text-center fade show" role="alert">
-              voce precisa estar logado para continuar
+              You need to be logged in to continue
+
             </div>
           )}         
            {showAlert.remove && (

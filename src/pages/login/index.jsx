@@ -73,13 +73,13 @@ export function Login() {
           )}
          
         </div>
-      <div className="vh-100 gradient-custom">
-        <div className="container ptcd -5 mt-5">
+      <div className="">
+        <div className="container ptcd -5">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-              <div className="card bg-dark text-white">
-                <div className="card-body p-5 text-center">
-                  <div className="mb-md-5 mt-md-4 pb-5">
+              <div className="card bg-dark text-white mt-5">
+                <div className="card-body p-5 text-center ">
+                  <div className="mb-md-5 mt-md-4">
                     <form className="form-signin" onSubmit={handleSubmit}>
                       <img className="mb-4" src="../img/logo.png" alt="" width="72" height="72" />
                       <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
