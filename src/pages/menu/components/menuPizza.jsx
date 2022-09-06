@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function PizzaMenu({ name, prices, id, img, category }) {
 
@@ -13,7 +14,8 @@ export default function PizzaMenu({ name, prices, id, img, category }) {
         width: "100%",
         maxWidth: "348px"
       }}>
-        <a href={url} >
+        <Link to={url}>
+        
           <img className="card-img-top"
             data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
             alt="Thumbnail [100%x225]"
@@ -24,7 +26,7 @@ export default function PizzaMenu({ name, prices, id, img, category }) {
             }}
             src={img || "https://via.placeholder.com/200x140.png?text=Pizza"}
             data-holder-rendered="true" />
-        </a>
+        </Link>
         <div className="card-body">
           <p id="" className="card-text">{name[0].toUpperCase() + name.substring(1)}</p>
           <table className="table">
@@ -46,7 +48,7 @@ export default function PizzaMenu({ name, prices, id, img, category }) {
           <div className="d-flex justify-content-between align-items-center">
             <small className="text-muted">{category}</small>
             <div className="btn-group">
-              <a href={url} className="btn btn-sm btn-outline-secondary">Show Info</a>
+            <Link to={url} className="btn btn-sm btn-outline-secondary">Show Info </Link>              
             </div>
           </div>
         </div>

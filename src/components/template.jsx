@@ -98,9 +98,8 @@ export default function Template({ children, hasBanner }) {
         padding: "10px"
       }}>
         <div className="container">
-          <p className="float-right">
-            <link></link>
-            <Link to="/">Back to menu</Link>            
+          <p className="float-right">            
+          <p className="mt-5 mb-3 text-muted">&copy;2022</p>        
           </p>
         </div>
       </footer>
