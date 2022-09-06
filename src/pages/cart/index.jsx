@@ -113,7 +113,8 @@ const handleAlert ={
           )}         
            {showAlert.remove && (
             <div className="alert alert-danger text-center fade show" role="alert">
-              item removido do carrinho
+              Item removed from cart
+
             </div>
           )}         
         </div>
