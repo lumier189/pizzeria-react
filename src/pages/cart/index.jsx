@@ -64,7 +64,7 @@ export function Cart() {
     })
     
   })
-  .then((response) => console.log(response))
+  .then((response) => response.JSON())
   
   .then((data) => { 
    console.log(data)

@@ -3,7 +3,7 @@ import { useField } from "@unform/core"
 import React, { useEffect, useRef } from "react";
 
 
-export default function Input({ name, placeholder }) {
+export default function Input({ name, placeholder, type }) {
   const inputRef = useRef(null)
   const { fieldName, registerField, defaultValue, error } = useField(name);
 
@@ -17,7 +17,7 @@ export default function Input({ name, placeholder }) {
   
   return (
     <div>
-      <input className="form-control" placeholder={placeholder} ref={inputRef} />
+      <input className="form-control" placeholder={placeholder} type={type} ref={inputRef} />
       <div>{error && <span style={{ color: "red" }}>{error}</span>}</div>
     </div>
   )

@@ -4,9 +4,11 @@ import Input from './components/input'
 import * as yup from "yup";
 import { Scope } from "@unform/core";
 import Template from "../../components/template";
+import { useNavigate } from "react-router-dom"
 
 export function UseForm() {
   const formRef = useRef(null)
+  const navigate = useNavigate();
   
   async function handleSubmit(data, { reset }) {
     console.log(data)
@@ -52,6 +54,11 @@ export function UseForm() {
         
       })
       .then(res => res.json())
+      
+      .then(() => {
+        
+        return navigate("/login")
+      })
      
       
 
@@ -88,11 +95,11 @@ export function UseForm() {
                 </div>
                 <div className="form-group col-md-6 mb-3">
                   <label className="form-label" htmlFor="password">Password</label>
-                  <Input className="form-control" name="password" placeholder="Digite um senha" />
+                  <Input className="form-control" type="password" name="password" placeholder="Digite um senha" />
                 </div>
                 <div className="form-group col-md-6 mb-3">
                   <label className="form-label" htmlFor="confirmPassword">Confirm password</label>
-                  <Input className="form-control" name="confirmPassword" placeholder="Repita sua senha" />
+                  <Input className="form-control" type="password" name="confirmPassword" placeholder="Repita sua senha" />
                 </div>
                 <div className="form-group col-md-6 mb-3">
                   <label className="form-label" htmlFor="phone" >Phone</label>
