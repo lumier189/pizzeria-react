@@ -6,7 +6,7 @@ export default function MetodoP({ handleChange, value }) {
 
     <div className="row ">
       <div className="col">
-        <h5>Method of payment</h5>
+        <h5>Payout method</h5>
       </div>
       <div className="form-group col">
         <select className="form-control" required value={value} onChange={(e) => handleChange(e.target.value)}>
