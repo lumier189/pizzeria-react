@@ -11,7 +11,7 @@ export default function Routes() {
       <Switch>    
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/" element={<Menu/>}/>
-        <Route path="/:id" element={<PizzaId/>}/> 
+        <Route path="/menu/:id" element={<PizzaId/>}/>  
         <Route path="/login" element={<Login/>}/>       
         <Route path="/cadastro" element={<UseForm/>}/>
         <Route path="*" element={<NotFound/>}/>

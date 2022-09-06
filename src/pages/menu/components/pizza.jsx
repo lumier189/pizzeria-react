@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Pizza({ name, prices, id, isRadioChecked, handleChange, aumentarQuantidade, diminuirQuantidade, quantidade, adicionarCarrinho, img, category, ingredients }) {
 
   const url = id
+  const sizeName = [null, "Small", "Medium", "Large"]
 
   return (
     <>
@@ -32,7 +33,7 @@ export default function Pizza({ name, prices, id, isRadioChecked, handleChange, 
             <div className="d-flex justify-content-between alignt-items-center" style={{ position: "relative" }}>
               <div>
                 <h3 className="card-text">
-                {name}
+                  {name}
                 </h3>
               </div>
               <div style={{ position: "absolute", right: "0", top: "8px" }}>
@@ -40,7 +41,7 @@ export default function Pizza({ name, prices, id, isRadioChecked, handleChange, 
               </div>
             </div>
             <span>
-              Ingredients :<br/>
+              Ingredients :<br />
               <div>{ingredients.map(({ name, id }) => <span key={id}>{name}/</span>)}</div>
             </span>
             <hr />
@@ -48,7 +49,7 @@ export default function Pizza({ name, prices, id, isRadioChecked, handleChange, 
               <table className="table text-center my-4">
                 <thead>
                   <tr>
-                    {prices.map(({ size }) => <th className="border-bottom-0" key={size}>{size}</th>)}
+                    {prices.map(({ size }) => <th className="border-bottom-0" key={size}>{sizeName[size]}</th>)}
                   </tr>
                 </thead>
                 <tbody>
@@ -62,7 +63,7 @@ export default function Pizza({ name, prices, id, isRadioChecked, handleChange, 
                   <tr>
                     {prices.map(({ size, price }) => (
                       <td key={size} className="border-top-0 border-bottom-0 border-end-0">
-                        <button style={{ minWidth: 40 }} type="radio" checked={isRadioChecked(size)} className="btn btn-outline-secondary" onClick={(e) => handleChange(size, price)} value={size} >Choose </button>
+                        <button style={{ minWidth: 35 }} type="radio" checked={isRadioChecked(size)} className="btn btn-outline-secondary" onClick={(e) => handleChange(size, price)} value={size} >Choose</button>
                       </td>
                     ))}
                   </tr>
@@ -71,7 +72,7 @@ export default function Pizza({ name, prices, id, isRadioChecked, handleChange, 
               <div className="container" style={{ position: "relative" }}>
                 <div className="my-2 text-center">
                   <button style={{ width: 28 }} type="button" className="btn btn-outline-dark btn-sm" onClick={diminuirQuantidade}> -</button>
-                  <input type="number" className="text-center ps-3" disabled style={{ outline: "0" }} value={quantidade} />
+                  <input type="number" className="text-center border-0 ps-3" disabled style={{ outline: "0" }} value={quantidade} />
                   <button style={{ width: 28 }} type="button" className="btn btn-outline-dark btn-sm" onClick={aumentarQuantidade}>+</button>
                 </div>
                 <div className="text-center">
@@ -84,11 +85,7 @@ export default function Pizza({ name, prices, id, isRadioChecked, handleChange, 
             </div>
           </div>
         </div>
-
       </div>
-
-
-
     </>
   )
 }

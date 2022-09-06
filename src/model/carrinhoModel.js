@@ -3,7 +3,7 @@ export default {
   getCarrinho() {
     return JSON.parse(sessionStorage.getItem('carrinho')) ?? {
       id: 0,
-      metodoPagamento: "",
+      metodoPagamento: "null",
       name: "cliente",
       pizza: [
       ],

@@ -2,9 +2,8 @@ import React, { useState } from "react";
 
 export default function PizzaMenu({ name, prices, id, img, category }) {
 
-  const url = id
-
-
+  const url ="menu/" + id
+  
   return (
     <div className="col-md-4" style={{
       display: "flex",

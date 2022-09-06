@@ -1,19 +1,23 @@
 import React from "react";
 
 
-export default function Items({ pizza, onChange, onDelete }) {
+export default function Items({ pizza, onChange, onDelete, handleAlert }) {
 
-  function changeQuantidade(quantidade) {
-    if (quantidade < 1) {
+  function changeQuantidade(quantity) {
+    if (quantity < 1) {
+     
       return onDelete(pizza)
     }
-    pizza.quantidade = quantidade
+    pizza.quantity = quantity
     onChange(pizza)
   }
 
   function deleteHandler(pizza) {
+    handleAlert.remove()
     onDelete(pizza)
   }
+
+  const sizeName = [null, "Small", "Medium", "Large"]
   return (
     <div className="table-responsive my-4">
       <table className="table">
@@ -43,26 +47,24 @@ export default function Items({ pizza, onChange, onDelete }) {
                 style={{
                   fontWeight: "500"
                 }}
-                > {pizza.name[0].toUpperCase() + pizza.name.substring(1)}
-              
-
+                > {pizza.name[0].toUpperCase() + pizza.name.substring(1)}          
               </p>
             </td>
             <td className="align-middle" style={{ maxWidth: "160px", width: "145px" }}>
               <p className="mb-0" style={{ fontWeight: "500" }}>
-                {pizza.tamanhoId}
+                {sizeName[pizza.size_id]}
               </p>
             </td>
             <td className="align-middle" style={{ maxWidth: "160px", width: "160px" }}>
               <div className="d-flex justify-content-center">
-                <button className="btn btn-outline-secondary"onClick={(e) => changeQuantidade(pizza.quantidade - 1)}> - </button>
-                <input type="number" className="text-center ps-3" disabled style={{ width: "50px" }} value={pizza.quantidade} />
-                <button className="btn btn-outline-secondary"  onClick={(e) => changeQuantidade(pizza.quantidade + 1)}> + </button>
+                <button className="btn btn-outline-secondary" style={{zIndex:999}} onClick={(e) => changeQuantidade(pizza.quantity - 1)}> - </button>
+                <input type="number" className="text-center border-0 ps-3 " disabled style={{ width:50,minWidth:50 }} value={pizza.quantity} />
+                <button className="btn btn-outline-secondary"  onClick={(e) => changeQuantidade(pizza.quantity + 1)}> + </button>
               </div>
             </td>
             <td className="align-middle" style={{ maxWidth: "160px", width: "145px" }}>
               <p className="mb-0" style={{ fontWeight: "500" }}>
-                {new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'USD' }).format(pizza.preco * pizza.quantidade)}
+                {new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'USD' }).format(pizza.preco * pizza.quantity)}
               </p>
             </td>
             <td className="align-middle text-end" style={{ maxWidth: "160px", width: "145px" }}>

@@ -11,7 +11,7 @@ export function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:3001/auth/login', {
+    fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -21,12 +21,17 @@ export function Login() {
         password: password
       }),
     })
-      .then(res => res.json())
+      .then(res => {
+        if(res.status === 200){
+          return res.json()
+        }
+        throw handleAlert()
+      })    
       .then((data) => {
         return User.setUser(data)
       })
-      .then(() => {
-        return fetch('http://localhost:3001/auth/profile', {
+      .then(() => { 
+        return fetch(`${process.env.REACT_APP_API_URL}/auth/profile`, {
           headers: {
             'Authorization': `Bearer ${User.getUser().token}`
           }
@@ -35,17 +40,41 @@ export function Login() {
           .then((data) => {
             User.setUser({ ...User.getUser(), ...data })
           })
+          
       })
       .then(() => {
-        // return <Navigate to="/"/>
+        
         return navigate("/")
       })
-  }
+      .catch((error)=>{
+        console.log(error)
+      })
+  }   
+
+  const [showAlert, setShowAlert] = useState({ sucess: false, error: false, pickSize: false });
+  // console.log(showAlert)
+
+  function handleAlert() {
+     setShowAlert(showAlert => { return { ...showAlert, error: true } })
+      return setTimeout(() => {
+        setShowAlert(showAlert => { return { ...showAlert, error: false } })
+      }, 4000);
+    }
 
   return (
     <Template>
+      
+        <div style={{ position: "fixed", top: "0", left: "0", right: "0", margin: "auto", width: "100%", maxWidth: 600, zIndex: 999 }}>
+
+          {showAlert.error && (
+            <div className="alert alert-danger text-center fade show" role="alert">
+              Error, invalid email or password.
+            </div>
+          )}
+         
+        </div>
       <div className="vh-100 gradient-custom">
-        <div className="container py-5 h-100">
+        <div className="container ptcd -5 mt-5">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
               <div className="card bg-dark text-white">

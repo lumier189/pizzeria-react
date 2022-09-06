@@ -7,7 +7,9 @@ import Template from "../../components/template";
 
 export function UseForm() {
   const formRef = useRef(null)
+  
   async function handleSubmit(data, { reset }) {
+    console.log(data)
     try {
       const schema = yup.object({
         name: yup.string().required(),
@@ -16,18 +18,42 @@ export function UseForm() {
         confirmPassword: yup.string().required().oneOf([yup.ref("password")]),
         phone: yup.string().required(),
         address: yup.object({
-          street: yup.string().required("address street is a required field"),
+          street_address: yup.string().required("address street is a required field"),
           number: yup.string().required("address number is a required field"),
-          postalCode: yup.string().required("postal code is a required field"),
+          postal_code: yup.string().required("postal code is a required field"),
           city: yup.string().required("address city is a required field"),
-          state: yup.string().required("address state is a required field"),
+          state_province: yup.string().required("address state is a required field"),
         })
       })
       await schema.validate(data, {
         abortEarly: false,
       })
-
-      // await  axios.post("//localhost:3000/clients",data)
+     fetch(`${process.env.REACT_APP_API_URL}/clients`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify( {
+          name : data.name,
+          phone : data.phone,
+          email : data.email,
+          birth_date : data.birth_date,
+          marital_status : data.marital_status,
+          gender : data.gender,
+          password : data.password,
+           address :{
+            street_address: data.address.street_address,
+              number : data.address.number,
+              city : data.address.city,
+              state_province: data.address.state_province,
+              postal_code : data.address.postal_code
+      }
+      }),
+        
+      })
+      .then(res => res.json())
+     
+      
 
       reset()
     } catch (err) {
@@ -69,19 +95,19 @@ export function UseForm() {
                   <Input className="form-control" name="confirmPassword" placeholder="Repita sua senha" />
                 </div>
                 <div className="form-group col-md-6 mb-3">
-                  <label className="form-label" for="phone" >Phone</label>
+                  <label className="form-label" htmlFor="phone" >Phone</label>
                   <Input name="phone" id="phone" className="form-control" placeholder="Digite seu telefone" />
                 </div>
                 <div className="form-group col-md-6 mb-3">
-                  <label className="form-label" for="bithDate">Birth date</label>
-                  <Input name="birthDate" id="bithDate" className="form-control" placeholder="Digite sua data de nascimento" />
+                  <label className="form-label" htmlFor="bith_date">Birth date</label>
+                  <Input name="birth_date" id="bith_date" className="form-control" placeholder="Digite sua data de nascimento" />
                 </div>
                 <div className="form-group col-md-6 mb-3">
-                  <label className="form-label" for="maritalStatus">Marital status</label>
+                  <label className="form-label" htmlFor="maritalStatus">Marital status</label>
                   <Input name="maritalStatus" id="maritalStatus" className="form-control" placeholder="Digite seu estado social" />
                 </div>
                 <div className="form-group col-md-6 mb-3">
-                  <label className="form-label" for="gender">Gender</label>
+                  <label className="form-label" htmlFor="gender">Gender</label>
                   <Input name="gender" id="gender" className="form-control" placeholder="Digite seu genero" />
                 </div>
               </div>
@@ -96,24 +122,24 @@ export function UseForm() {
                 <Scope path="address">
                   <div className="row">
                     <div className="form-group col-md-6 mb-3">
-                      <label className="form-label" for="address.postalCode">Postal code</label>
-                      <Input name="postalCode" id="address.postalCode" className="form-control" />
+                      <label className="form-label" htmlFor="address.postalCode">Postal code</label>
+                      <Input name="postal_code" id="address.postalCode" className="form-control" />
                     </div>
                     <div className="form-group col-md-6 mb-3">
-                      <label className="form-label" for="addres.street">Street Address</label>
-                      <Input name="street" id="addres.street" className="form-control" />
+                      <label className="form-label" htmlFor="addres.street">Street Address</label>
+                      <Input name="street_address" id="addres.street" className="form-control" />
                     </div>
                     <div className="form-group col-md-2 mb-3">
-                      <label className="form-label" for="address.number">Number</label>
+                      <label className="form-label" htmlFor="address.number">Number</label>
                       <Input name="number" id="address.number" className="form-control" />
                     </div>
                     <div className="form-group col-md-5 mb-3">
-                      <label className="form-label" for="address.city">City</label>
+                      <label className="form-label" htmlFor="address.city">City</label>
                       <Input name="city" id="address.city" className="form-control" />
                     </div>
                     <div className="form-group col-md-5 mb-3">
-                      <label className="form-label" for="address.state">State</label>
-                      <Input name="state" id="address.state" className="form-control" />
+                      <label className="form-label" htmlFor="address.state">State</label>
+                      <Input name="state_province" id="address.state" className="form-control" />
                     </div>
                   </div>
                 </Scope>

@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from "react"
-import Pizza from "./components/pizza"
-import arrayPizzas from "../../data/items.json"
-import { useParams } from "react-router-dom"
-import Carrinho from "../../model/carrinhoModel"
-import Template from "../../components/template"
-
+import React, { useState, useEffect } from "react";
+import Pizza from "./components/pizza";
+import { useParams } from "react-router-dom";
+import Carrinho from "../../model/carrinhoModel";
+import Template from "../../components/template";
 
 export function PizzaId() {
 
   const [carrinho, setCarrinho] = useState(Carrinho.getCarrinho());
-  // console.log( carrinho, carrinho.pedidos, carrinho.pedidos.pizza)
-  // const todasPizzas = carrinho.pedidos
-  // console.log(todasPizzas) 
 
   useEffect(() => {
     Carrinho.setCarrinho(carrinho);
@@ -22,17 +17,17 @@ export function PizzaId() {
     if (tamanho === null) {
       return handleAlert()
     }
-    if (carrinho.pizza.find(pizza => pizza.id === id && pizza.tamanhoId === tamanho)) {
+    if (carrinho.pizza.find(pizza => pizza.menu_id === id && pizza.size_id === tamanho)) {
       return handleAlert()
     }
 
     const newPedidos = [...carrinho.pizza, {
       name: pizza.name,
-      id: id,
+      menu_id: id,
       preco: price,
       img: pizza.img,
-      tamanhoId: tamanho,
-      quantidade: quantidade
+      size_id: tamanho,
+      quantity: quantidade
     }]
     handleAlert()
     return setCarrinho({ ...carrinho, pizza: newPedidos })
@@ -87,24 +82,21 @@ export function PizzaId() {
 
 
   });
-
-  useEffect(() => {
-    fetch("http://localhost:3001/pizzas/" + id)
+  console.log(process.env)
+  useEffect(() => { 
+    
+    fetch(`${process.env.REACT_APP_API_URL}/pizzas/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setPizza(data)
       })
   }, [])
-  const idName = []
-  const sizeName = [null, "Small", "Medium", "Large"]
-  // const pizza = arrayPizzas.find(pizza => pizza.id === Number(id))
-
 
   const [showAlert, setShowAlert] = useState({ sucess: false, error: false, pickSize: false });
-  // console.log(showAlert)
+
 
   function handleAlert() {
-    if (carrinho.pizza.find(pizza => pizza.id === id && pizza.tamanhoId === tamanho)) {
+    if (carrinho.pizza.find(pizza => pizza.menu_id === id && pizza.size_id === tamanho)) {
       setShowAlert(showAlert => { return { ...showAlert, error: true } })
       return setTimeout(() => {
         setShowAlert(showAlert => { return { ...showAlert, error: false } })
@@ -155,7 +147,7 @@ export function PizzaId() {
           key={pizza.id}
           name={pizza.name}
           prices={pizza.menu_sizes.map((menu_size) => ({
-            size: sizeName[menu_size.size_id],
+            size:menu_size.size_id,
             price: menu_size.price
           }))} />
       </div>

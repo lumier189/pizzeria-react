@@ -8,7 +8,7 @@ export function Menu() {
   const [arrayPizzas, setArrayPizzas] = useState([])
   // console.log(arrayPizzas)
   useEffect(() => {
-    fetch("http://localhost:3001/pizzas")
+    fetch(`${process.env.REACT_APP_API_URL}/pizzas`)
       .then((response) => response.json())
       .then((data) => {
         setArrayPizzas(data)

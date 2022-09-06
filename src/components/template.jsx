@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-import Carrinho from "../model/carrinhoModel"
-import userModel from "../model/userModel";
-import User from "../model/userModel"
+import React from "react";
+import Carrinho from "../model/carrinhoModel";
+import User from "../model/userModel";
 
 export default function Template({ children, hasBanner }) {
-  const [carrinho, setCarrinho] = useState(Carrinho.getCarrinho())
+  const carrinho = Carrinho.getCarrinho()
   const user = User.getUser()
+ 
 
   function isAuth() {
-    if (user === null)
-      return false
+    if (!user || !user.token)
+      return false      
     return true
   }
-
 
   function quantidadeTotalDeItems() {
     const items = carrinho.pizza.length
@@ -36,7 +35,7 @@ export default function Template({ children, hasBanner }) {
             {isAuth() ? (
               <div className="d-flex">
                 <div className="col-auto ">
-                  <span className="btn btn-dark btn-sm" type="submit">sing out</span>
+                  <span onClick={(e)=>User.removeUser()} className="btn btn-dark btn-sm" type="submit">logout</span>
                 </div>
                 <div className="col-auto mx-3">
                   <span className="btn btn-dark btn-sm">{user.name}</span>
@@ -54,7 +53,7 @@ export default function Template({ children, hasBanner }) {
             ) :
               <div className="d-flex">
                 <div className="col-auto ">
-                  <a href="/login2" className="btn btn-dark btn-sm" type="submit">Sign in</a>
+                  <a href="/login" className="btn btn-dark btn-sm" type="submit">Sign in</a>
                 </div>
                 <div className="col-auto mx-3">
                   <a href="/cadastro" className="btn btn-dark btn-sm">Register</a>
