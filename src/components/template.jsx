@@ -99,7 +99,7 @@ export default function Template({ children, hasBanner }) {
       }}>
         <div className="container">
           <p className="float-right">            
-          <p className="mt-5 mb-3 text-muted">&copy;2022</p>        
+         &copy;2022      
           </p>
         </div>
       </footer>

@@ -48,7 +48,7 @@ export default function PizzaMenu({ name, prices, id, img, category }) {
           <div className="d-flex justify-content-between align-items-center">
             <small className="text-muted">{category}</small>
             <div className="btn-group">
-            <Link to={url} className="btn btn-sm btn-outline-secondary">Show Info </Link>              
+            <Link to={url} className="btn btn-sm btn-outline-secondary">Show Info</Link>              
             </div>
           </div>
         </div>
