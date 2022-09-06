@@ -1,6 +1,7 @@
 import React from "react";
 import Carrinho from "../model/carrinhoModel";
 import User from "../model/userModel";
+import { Link } from "react-router-dom"
 
 export default function Template({ children, hasBanner }) {
   const carrinho = Carrinho.getCarrinho()
@@ -25,13 +26,14 @@ export default function Template({ children, hasBanner }) {
       <header>
         <div className="navbar navbar-dark bg-dark box-shadow">
           <div className="container justify-content-between">
-            <a href="/" className="navbar-brand align-items-center">
+          <Link to="/"className="navbar-brand align-items-center" style={{ position: "relative" }}>
+            
               <img
                 style={{ marginTop: -3 }}
                 src="../img/logowhite.png"
                 width="20" height="20" alt="imagem" />
               <strong>&nbsp;VitorPizzas</strong>
-            </a>
+            </Link>
             {isAuth() ? (
               <div className="d-flex">
                 <div className="col-auto ">
@@ -53,20 +55,22 @@ export default function Template({ children, hasBanner }) {
             ) :
               <div className="d-flex">
                 <div className="col-auto ">
-                  <a href="/login" className="btn btn-dark btn-sm" type="submit">Sign in</a>
+                  <Link to="/login" className="btn btn-dark btn-sm" >Sign in</Link>                 
                 </div>
                 <div className="col-auto mx-3">
-                  <a href="/register" className="btn btn-dark btn-sm">Register</a>
+                <Link to="/register" className="btn btn-dark btn-sm" >Register</Link>                 
                 </div>
-                <a className="rounded-circle" href="/cart" style={{ position: "relative" }}>
+                    
+                <Link to="/cart" className="rounded-circle"style={{ position: "relative" }}>
+                
                   <img className="" src="../img/cart.png" width="25" alt="cart" style={{ filter: "invert(100)", position: "relative" }} />
-
                   {quantidadeTotalDeItems() > 0 && (
                     <div className="rounded-circle bg-danger d-flex justify-content-center align-items-center" style={{ color: "white", width: "20px", height: "1.3rem", position: "absolute", bottom: "10px", right: "0", transform: "translate(40%,63%)" }}>
                       {quantidadeTotalDeItems()}
                     </div>
                   )}
-                </a>
+                
+                </Link> 
               </div>
             }
           </div>
@@ -95,7 +99,8 @@ export default function Template({ children, hasBanner }) {
       }}>
         <div className="container">
           <p className="float-right">
-            <a href="/">Back to menu</a>
+            <link></link>
+            <Link to="/">Back to menu</Link>            
           </p>
         </div>
       </footer>
