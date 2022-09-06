@@ -49,7 +49,7 @@ export function Cart() {
     // if(!isAuth()){
     //   return "você precisa efetuar login para terminar a compra"
     // }  
-   fetch(`${process.env.REACT_APP_API_URL}orders`, {
+   fetch(`${process.env.REACT_APP_API_URL}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
