@@ -57,7 +57,7 @@ export default function Items({ pizza, onChange, onDelete, handleAlert }) {
             </td>
             <td className="align-middle" style={{ maxWidth: "160px", width: "160px" }}>
               <div className="d-flex justify-content-center">
-                <button className="btn btn-outline-secondary" style={{zIndex:999}} onClick={(e) => changeQuantidade(pizza.quantity - 1)}> - </button>
+                <button className="btn btn-outline-secondary" onClick={(e) => changeQuantidade(pizza.quantity - 1)}> - </button>
                 <input type="number" className="text-center border-0" disabled style={{ width:50,minWidth:50 }} value={pizza.quantity} />
                 <button className="btn btn-outline-secondary"  onClick={(e) => changeQuantidade(pizza.quantity + 1)}> + </button>
               </div>
