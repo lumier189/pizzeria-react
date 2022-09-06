@@ -19,7 +19,7 @@ export default function Items({ pizza, onChange, onDelete, handleAlert }) {
 
   const sizeName = [null, "Small", "Medium", "Large"]
   return (
-    <div className="table-responsive my-4">
+    <div className="table-responsive pt-4">
       <table className="table">
         <thead>
           <tr className="text-center">

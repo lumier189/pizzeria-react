@@ -95,7 +95,7 @@ export function UseForm() {
                 </div>
                 <div className="form-group col-md-6 mb-3">
                   <label className="form-label" htmlFor="password">Password</label>
-                  <Input className="form-control" type="password" name="password" placeholder="Digite um senha" />
+                  <Input className="form-control" type="password" name="password" placeholder="Digite uma senha" />
                 </div>
                 <div className="form-group col-md-6 mb-3">
                   <label className="form-label" htmlFor="confirmPassword">Confirm password</label>

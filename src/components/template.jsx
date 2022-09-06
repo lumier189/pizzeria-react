@@ -56,7 +56,7 @@ export default function Template({ children, hasBanner }) {
                   <a href="/login" className="btn btn-dark btn-sm" type="submit">Sign in</a>
                 </div>
                 <div className="col-auto mx-3">
-                  <a href="/cadastro" className="btn btn-dark btn-sm">Register</a>
+                  <a href="/register" className="btn btn-dark btn-sm">Register</a>
                 </div>
                 <a className="rounded-circle" href="/cart" style={{ position: "relative" }}>
                   <img className="" src="../img/cart.png" width="25" alt="cart" style={{ filter: "invert(100)", position: "relative" }} />
@@ -94,7 +94,9 @@ export default function Template({ children, hasBanner }) {
         padding: "10px"
       }}>
         <div className="container">
-          
+          <p className="float-right">
+            <a href="/">Back to menu</a>
+          </p>
         </div>
       </footer>
     </div >
