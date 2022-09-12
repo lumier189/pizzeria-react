@@ -69,7 +69,7 @@ export default function Pizza({ name, prices, id, isRadioChecked, handleChange, 
               <div className="container" style={{ position: "relative" }}>
                 <div className="my-2 text-center">
                   <button style={{ width: 28 }} type="button" className="btn btn-outline-dark btn-sm" onClick={diminuirQuantidade}> -</button>
-                  <input type="number" className="text-center border-0 " disabled style={{maxWidth:80, outline: "0" }} value={quantidade} />
+                  <input type="number" className="text-center ps-3 border-0 " disabled style={{maxWidth:80, outline: "0" }} value={quantidade} />
                   <button style={{ width: 28 }} type="button" className="btn btn-outline-dark btn-sm" onClick={aumentarQuantidade}>+</button>
                 </div>
                 <div className="text-center">
