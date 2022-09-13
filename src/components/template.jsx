@@ -90,7 +90,7 @@ export default function Template({ children, hasBanner }) {
       )}
       <div>
       </div>
-      <div className="container" style={{ minHeight: hasBanner ? "calc(100vh - 366px)" : "calc(100vh - 102px)" }}>
+      <div className="container" style={{ minHeight: hasBanner ? "calc(100vh - 352px)" : "calc(100vh - 102px)" }}>
         {children}
       </div>
       <footer className="text-muted" style={{
